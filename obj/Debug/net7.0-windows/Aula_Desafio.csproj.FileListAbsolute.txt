@@ -1,0 +1,14 @@
+C:\Users\disrct\Desktop\Aulas_CSharp\Aula_Desafio\obj\Debug\net7.0-windows\Aula_Desafio.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\disrct\Desktop\Aulas_CSharp\Aula_Desafio\obj\Debug\net7.0-windows\Aula_Desafio.AssemblyInfoInputs.cache
+C:\Users\disrct\Desktop\Aulas_CSharp\Aula_Desafio\obj\Debug\net7.0-windows\Aula_Desafio.AssemblyInfo.cs
+C:\Users\disrct\Desktop\Aulas_CSharp\Aula_Desafio\obj\Debug\net7.0-windows\Aula_Desafio.csproj.CoreCompileInputs.cache
+C:\Users\disrct\Desktop\Aulas_CSharp\Aula_Desafio\bin\Debug\net7.0-windows\Aula_Desafio.exe
+C:\Users\disrct\Desktop\Aulas_CSharp\Aula_Desafio\bin\Debug\net7.0-windows\Aula_Desafio.deps.json
+C:\Users\disrct\Desktop\Aulas_CSharp\Aula_Desafio\bin\Debug\net7.0-windows\Aula_Desafio.runtimeconfig.json
+C:\Users\disrct\Desktop\Aulas_CSharp\Aula_Desafio\bin\Debug\net7.0-windows\Aula_Desafio.dll
+C:\Users\disrct\Desktop\Aulas_CSharp\Aula_Desafio\bin\Debug\net7.0-windows\Aula_Desafio.pdb
+C:\Users\disrct\Desktop\Aulas_CSharp\Aula_Desafio\obj\Debug\net7.0-windows\Aula_Desafio.dll
+C:\Users\disrct\Desktop\Aulas_CSharp\Aula_Desafio\obj\Debug\net7.0-windows\refint\Aula_Desafio.dll
+C:\Users\disrct\Desktop\Aulas_CSharp\Aula_Desafio\obj\Debug\net7.0-windows\Aula_Desafio.pdb
+C:\Users\disrct\Desktop\Aulas_CSharp\Aula_Desafio\obj\Debug\net7.0-windows\Aula_Desafio.genruntimeconfig.cache
+C:\Users\disrct\Desktop\Aulas_CSharp\Aula_Desafio\obj\Debug\net7.0-windows\ref\Aula_Desafio.dll
