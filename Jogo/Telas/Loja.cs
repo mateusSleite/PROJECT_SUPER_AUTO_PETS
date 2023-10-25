@@ -3,32 +3,42 @@ using System.Collections.Generic;
 
 public class Loja
 {
-    List<Maquinas> Lojinha = new List<Maquinas>();
-    List<Maquinas> Rodada3 = new List<Maquinas>();
-    List<Maquinas> Rodada5 = new List<Maquinas>();
-    List<Maquinas> Rodada8 = new List<Maquinas>();
-    List<Maquinas> Rodada10 = new List<Maquinas>();
-    List<Maquinas> Rodada12 = new List<Maquinas>();
+    public List<Maquinas> Lojinha = new List<Maquinas>();
 
 
     private Loja() { }
 
     private static Loja crr = null;
-    public static Loja currente => crr;
+    public static Loja current => crr;
 
     private int Moedinha { get; set; }
     private AcaoComprar acaoComprar = null;
 
-    public void Comprar(Maquinas maquinas)
+    public void Adicionar()
+    {
+        var random = new Random();
+        int index = random.Next(LojaBase.Count);
+        Lojinha.Add(maquina);
+    }
+
+    public void Comprar(MaquinasAtb[] maquinasParaCompra)
     {
         ArgsComprar args = new ArgsComprar();
-        args.Maquinas = maquinas;
-        args.Maquinas = this;
 
-        acaoComprar.Apply(args);
-        // Aplicar sistema de sub de moedas
-        Team.Add(maquinas); // adicionar maquina no time após a compra (precisa implementar o time)
+        foreach (MaquinasAtb maquina in maquinasParaCompra)
+        {
+            args.Maquinas = maquina;
+
+            // Aplicar ação de compra para cada máquina
+            acaoComprar.Apply(args);
+
+            // Aplicar sistema de subtração de moedas, se necessário
+
+            // Adicionar a máquina comprada ao time
+            Team.Add(maquina);
+        }
     }
+
 
     public void Vender(Maquinas maquinas)
     {
@@ -62,12 +72,6 @@ public class Loja
         public Loja Build()
             => this.loja;
 
-        public LojaBuilder SetNome(string nome)
-        {
-            loja.Nome = nome;
-            return this;
-        }
-
         public LojaBuilder SetFabrica(IFabricaAcoes fabrica)
         {
             loja.processoDemissao = fabrica.CriaProcessoDemissao();
@@ -75,7 +79,7 @@ public class Loja
             loja.processoContratacao = fabrica.CriaProcessoContratacao();
             return this;
         }
-        
+
         public LojaBuilder SetMoedinha(int moedinha)
         {
             loja.Moedinha = moedinha;

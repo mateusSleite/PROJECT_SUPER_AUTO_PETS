@@ -6,25 +6,25 @@ public class ArgumentosAcoes
 
 public class ArgsSoquinho : ArgumentosAcoes
 {
-    public Maquinas Maquinas { get; set; }
+    public MaquinasAtb  Maquinas { get; set; }
 }
 
 public class ArgsEvoluiu : ArgumentosAcoes
 {
-    public Maquinas Maquinas { get; set; }
+    public MaquinasAtb  Maquinas { get; set; }
 }
 
 public class ArgsComprar : ArgumentosAcoes
 {
-    public Maquinas Maquinas { get; set; }
+    public MaquinasAtb  Maquinas { get; set; }
 }
 
 public class ArgsVender : ArgumentosAcoes
 {
-    public Maquinas Maquinas { get; set; }
+    public MaquinasAtb  Maquinas { get; set; }
 }
 
 public class ArgsAtualizar: ArgumentosAcoes
 {
-    public Maquinas Maquinas { get; set; }
+    public MaquinasAtb  Maquinas { get; set; }
 }
