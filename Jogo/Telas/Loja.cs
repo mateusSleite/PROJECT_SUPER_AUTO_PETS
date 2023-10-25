@@ -3,6 +3,14 @@ using System.Collections.Generic;
 
 public class Loja
 {
+    List<Maquinas> Lojinha = new List<Maquinas>();
+    List<Maquinas> Rodada3 = new List<Maquinas>();
+    List<Maquinas> Rodada5 = new List<Maquinas>();
+    List<Maquinas> Rodada8 = new List<Maquinas>();
+    List<Maquinas> Rodada10 = new List<Maquinas>();
+    List<Maquinas> Rodada12 = new List<Maquinas>();
+
+
     private Loja() { }
 
     private static Loja crr = null;
@@ -60,7 +68,7 @@ public class Loja
             return this;
         }
 
-        public LojaBuilder SetFabrica(IFabricaProcessos fabrica)
+        public LojaBuilder SetFabrica(IFabricaAcoes fabrica)
         {
             loja.processoDemissao = fabrica.CriaProcessoDemissao();
             loja.processoPagamentoSalario = fabrica.CriaProcessoPagamentoSalario();
@@ -68,18 +76,16 @@ public class Loja
             return this;
         }
         
-        public LojaBuilder SetCapitalInicial(decimal dinheiro)
+        public LojaBuilder SetMoedinha(int moedinha)
         {
-            loja.Dinheiro = dinheiro;
+            loja.Moedinha = moedinha;
             return this;
         }
 
-        public LojaBuilder AddEmpregado(string nome, decimal salario)
+        public LojaBuilder AddMaquina(Maquinas maquinas)
         {
-            Loja loja = new Loja();
-            loja.Nome = nome;
-            loja.Salario = salario;
-            loja.Contratar(loja);
+            //Gerar tres maquinas aleatorias
+
             return this;
         }
     }

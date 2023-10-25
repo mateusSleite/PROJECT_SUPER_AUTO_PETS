@@ -1,9 +1,9 @@
 public abstract class MaquinasAtb
 {
-    private int Tier      { get; set; }
-    private string Nome   { get; set; }
-    private int Ataque    { get; set; }
-    private int Vida      { get; set; }
-    private int Nivel     { get; set; }
-    private int Xp        { get; set; }
+    protected int Tier      { get; set; }
+    protected string Nome   { get; set; }
+    protected int Ataque    { get; set; }
+    protected int Vida      { get; set; }
+    protected int Nivel     { get; set; }
+    protected int Xp        { get; set; }
 }
