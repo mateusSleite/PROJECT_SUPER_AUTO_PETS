@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\disrct\\Desktop\\Desafio\\Aula_Desafio\\Aula_Desafio.csproj",
+      "projectUniqueName": "C:\\Users\\disrct\\Desktop\\DESAFIO_PETS\\Aula_Desafio\\Aula_Desafio.csproj",
       "projectName": "Aula_Desafio",
-      "projectPath": "C:\\Users\\disrct\\Desktop\\Desafio\\Aula_Desafio\\Aula_Desafio.csproj",
+      "projectPath": "C:\\Users\\disrct\\Desktop\\DESAFIO_PETS\\Aula_Desafio\\Aula_Desafio.csproj",
       "packagesPath": "C:\\Users\\disrct\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\disrct\\Desktop\\Desafio\\Aula_Desafio\\obj\\",
+      "outputPath": "C:\\Users\\disrct\\Desktop\\DESAFIO_PETS\\Aula_Desafio\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\disrct\\AppData\\Roaming\\NuGet\\NuGet.Config"

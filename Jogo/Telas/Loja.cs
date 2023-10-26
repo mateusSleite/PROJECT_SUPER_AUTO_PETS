@@ -1,10 +1,22 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public class Loja
 {
-    public List<Maquinas> Lojinha = new List<Maquinas>();
+    public List<Type> TodasMaquinas { get; set; } = new List<Type>
+    {
+        typeof(Martelo),
+        typeof(ChaveDeFenda),
+        typeof(Esteira),
+        typeof(FuradeiraDeColuna),
+        typeof(FornoIndustrialAGas),
+        typeof(RetificaPlana)
+    };
 
+    public List<MaquinasAtb> Lojinha = new List<MaquinasAtb>();
+
+    private PlayerTeam playerTeam = new PlayerTeam();
 
     private Loja() { }
 
@@ -13,56 +25,67 @@ public class Loja
 
     private int Moedinha { get; set; }
     private AcaoComprar acaoComprar = null;
+    private AcaoVender acaoVender = null;
+    private AcaoAtualizar acaoAtualizar = null;
 
-    public void Adicionar()
-    {
-        var random = new Random();
-        int index = random.Next(LojaBase.Count);
-        Lojinha.Add(maquina);
-    }
-
-    public void Comprar(MaquinasAtb[] maquinasParaCompra)
+    public void Comprar(MaquinasAtb maquinaParaCompra)
     {
         ArgsComprar args = new ArgsComprar();
-
-        foreach (MaquinasAtb maquina in maquinasParaCompra)
+        args.Maquinas = maquinaParaCompra;
+        
+        if (Moedinha < 3)
         {
-            args.Maquinas = maquina;
-
-            // Aplicar ação de compra para cada máquina
-            acaoComprar.Apply(args);
-
-            // Aplicar sistema de subtração de moedas, se necessário
-
-            // Adicionar a máquina comprada ao time
-            Team.Add(maquina);
+            Console.WriteLine("Moedas insuficientes!");
+            return;
         }
+
+        acaoComprar.Apply(args);
+        Moedinha -= 3;
+        playerTeam.AddMachine(maquinaParaCompra);
     }
 
-
-    public void Vender(Maquinas maquinas)
+    public void Vender(MaquinasAtb maquinas)
     {
         ArgsVender args = new ArgsVender();
         args.Maquinas = maquinas;
-        args.Maquinas = this;
 
         acaoVender.Apply(args);
-
-        //Aplicar sum de moedas caso ocorra a venda de uma maquina (nivel * 1)
-
-        // Aplicar sistema de sum de moedas
-        Team.Remove(maquinas); // remover maquina no time após a compra (precisa implementar o time)
+        Moedinha += maquinas.Nivel;
+        playerTeam.RemoveMachine(maquinas);
     }
 
-    public void Atualizar(Maquinas maquinas)
+    public void Atualizar()
     {
-        ArgsAtualizar args = new ArgsAtualizar();
-        args.Maquinas = maquinas;
-        args.Maquinas = this;
+        var maquinasSorteadas = SortearTresMaquinasAleatorias();
+        var builder = GetBuilder();
 
-        acaoAtualizar.Apply(args);
+        foreach(var maquina in maquinasSorteadas)
+        {
+            builder.AddMaquina(maquina);
+        }
 
-        // Aplicar sistema de sub de moedas e atualizacao da loja
+        Loja novaLoja = builder.Build();
+        crr = novaLoja;
+    }
+
+    private List<MaquinasAtb> SortearTresMaquinasAleatorias()
+    {
+        var random = new Random();
+        var maquinasSorteadas = new List<MaquinasAtb>();
+
+        for (int i = 0; i < 3; i++)
+        {
+            Type maquinaType;
+            do
+            {
+                maquinaType = TodasMaquinas[random.Next(TodasMaquinas.Count)];
+            } while (maquinasSorteadas.Any(m => m.GetType() == maquinaType));
+
+            var maquina = (MaquinasAtb)Activator.CreateInstance(maquinaType);
+            maquinasSorteadas.Add(maquina);
+        }
+
+        return maquinasSorteadas;
     }
 
     public class LojaBuilder
@@ -72,11 +95,11 @@ public class Loja
         public Loja Build()
             => this.loja;
 
-        public LojaBuilder SetFabrica(IFabricaAcoes fabrica)
+        public LojaBuilder SetFabrica(IFabricaAcoes acao)
         {
-            loja.processoDemissao = fabrica.CriaProcessoDemissao();
-            loja.processoPagamentoSalario = fabrica.CriaProcessoPagamentoSalario();
-            loja.processoContratacao = fabrica.CriaProcessoContratacao();
+            loja.acaoComprar = acao.CriarComprar();
+            loja.acaoVender = acao.CriarVender();
+            loja.acaoAtualizar = acao.CriarAtualizar();
             return this;
         }
 
@@ -86,11 +109,15 @@ public class Loja
             return this;
         }
 
-        public LojaBuilder AddMaquina(Maquinas maquinas)
+        public LojaBuilder AddMaquina(MaquinasAtb maquinas)
         {
-            //Gerar tres maquinas aleatorias
-
+            loja.Lojinha.Add(maquinas);
             return this;
         }
+    }
+
+    public static LojaBuilder GetBuilder()
+    {
+        return new LojaBuilder();
     }
 }
